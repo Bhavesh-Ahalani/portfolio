@@ -8,7 +8,11 @@ const Footer = () => {
       {footer.map((link, index) => (
         <a
           key={index}
-          href={link.href}
+          href={
+            link.href.startsWith("/assets/")
+              ? `${process.env.PUBLIC_URL}${link.href}`
+              : link.href
+          }
           download={link.download}
           target={link.target || undefined}
           rel={link.rel}
