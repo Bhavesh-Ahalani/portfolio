@@ -1,0 +1,26 @@
+[
+  {
+    "href": "/assets/Bhavesh_Resume.pdf",
+    "download": true,
+    "target": "",
+    "rel": "noopener noreferrer",
+    "imgSrc": "/assets/icons/resume.svg",
+    "altText": "Resume"
+  },
+  {
+    "href": "https://www.linkedin.com/in/bhavesh-ahalani/",
+    "download": false,
+    "target": "_blank",
+    "rel": "noopener noreferrer",
+    "imgSrc": "/assets/icons/linkedin.svg",
+    "altText": "LinkedIn"
+  },
+  {
+    "href": "https://github.com/Bhavesh-Ahalani",
+    "download": false,
+    "target": "_blank",
+    "rel": "noopener noreferrer",
+    "imgSrc": "/assets/icons/github.svg",
+    "altText": "GitHub"
+  }
+]

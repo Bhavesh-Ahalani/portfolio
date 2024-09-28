@@ -1,0 +1,301 @@
+.card-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 6rem;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  height: 27rem;
+  background-color: #181919;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-heading {
+  background-color: #353535;
+  border-bottom: 0.4px solid #2a2c2c;
+  justify-content: space-between;
+  padding: 1.5rem;
+  display: flex;
+}
+
+.card-heading-text {
+  letter-spacing: -0.07rem;
+  font-size: 2.2rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #ffffff;
+}
+
+.card-body {
+  padding: 2rem;
+  flex: 1; /* Takes up the remaining space in the card */
+  color: #d3d3d3;
+  font-size: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+}
+
+.card-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 2rem;
+}
+
+/* Keep your tech stack chips style */
+.card-tech-stack {
+  /* background-color: #4a4a4a;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 1rem; */
+  border: 1px solid #4a4a4a;
+  color: #ffffff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 1rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 930px) {
+  .card-container {
+    top: -8rem;
+  }
+
+  .card {
+    height: 38rem;
+    margin: 1rem;
+  }
+
+  .card-heading-text {
+    font-size: 1.8rem;
+  }
+
+  .card-body {
+    font-size: 1.8rem;
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .card-container {
+    top: -1rem;
+  }
+
+  .card {
+    height: 42rem;
+    margin: 1rem;
+  }
+
+  .card-heading-text {
+    font-size: 1.8rem;
+  }
+
+  .card-body {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .card-container {
+    top: 2rem;
+  }
+
+  .card {
+    height: 36rem;
+    margin: 1rem;
+  }
+
+  .card-heading-text {
+    font-size: 1.8rem;
+  }
+
+  .card-body {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .card-container {
+    top: -1rem;
+  }
+  .card {
+    height: 36rem;
+    margin: 1rem;
+  }
+
+  .card-heading-text {
+    font-size: 1.8rem;
+  }
+
+  .card-body {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-container {
+    top: 1rem;
+  }
+  .card {
+    height: 44rem;
+  }
+
+  .card-heading-text {
+    font-size: 1.5rem;
+  }
+
+  .card-body {
+    font-size: 1.8rem;
+  }
+
+  .card-tech-stack {
+    padding: 0.3rem 0.6rem;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .card-container {
+    top: 1rem;
+  }
+  .card {
+    height: 44rem;
+  }
+
+  .card-heading-text {
+    font-size: 1.5rem;
+  }
+
+  .card-body {
+    font-size: 1.8rem;
+  }
+
+  .card-tech-stack {
+    padding: 0.3rem 0.6rem;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 414px) {
+  .card-container {
+    top: 2rem;
+  }
+  .card {
+    height: 46rem;
+  }
+
+  .card-heading-text {
+    font-size: 1.5rem;
+  }
+
+  .card-body {
+    font-size: 1.7rem;
+  }
+
+  .card-tech-stack {
+    padding: 0.3rem 0.6rem;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .card-container {
+    top: 2rem;
+  }
+  .card {
+    height: 42rem;
+  }
+
+  .card-heading-text {
+    font-size: 1.5rem;
+  }
+
+  .card-body {
+    font-size: 1.5rem;
+  }
+
+  .card-tech-stack {
+    padding: 0.3rem 0.6rem;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .card-container {
+    top: 3rem;
+  }
+  .card {
+    height: 42rem;
+  }
+
+  .card-heading-text {
+    font-size: 1.5rem;
+  }
+
+  .card-body {
+    font-size: 1.5rem;
+  }
+
+  .card-tech-stack {
+    padding: 0.3rem 0.6rem;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .card-container {
+    top: 2rem;
+  }
+  .card {
+    height: 44rem;
+  }
+
+  .card-heading-text {
+    font-size: 1.5rem;
+  }
+
+  .card-body {
+    font-size: 1.475rem;
+  }
+
+  .card-tech-stack {
+    padding: 0.3rem 0.6rem;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 344px) {
+  .card-container {
+    top: 4rem;
+  }
+  .card {
+    height: 50rem;
+  }
+
+  .card-heading-text {
+    font-size: 1.5rem;
+  }
+
+  .card-body {
+    font-size: 1.475rem;
+  }
+
+  .card-tech-stack {
+    padding: 0.3rem 0.6rem;
+    font-size: 1.2rem;
+  }
+}

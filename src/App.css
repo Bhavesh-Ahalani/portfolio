@@ -1,0 +1,42 @@
+.App {
+  margin-top: 6rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0 6.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 6rem;
+}
+
+/* Icon container styles */
+.icon-container {
+  position: fixed;
+  top: 0;
+  right: 1rem;
+  background-color: rgb(50 49 49 / 45%);
+  padding: 0.25rem 0.75rem 0.25rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.contact-icon {
+  padding: 1rem 0.75rem 0.5rem;
+  cursor: pointer;
+}
+
+/* For small devices (landscape phones, 576px and up) */
+@media (max-width: 575.98px) {
+  .App {
+    padding: 0 2.5rem;
+  }
+}
+
+/* For medium devices (tablets, 768px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .App {
+    padding: 0 4.5rem;
+  }
+}

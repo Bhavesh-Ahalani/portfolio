@@ -1,0 +1,180 @@
+.work-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: #2a2c2c91;
+  border-radius: 1rem;
+  gap: 1.25rem;
+  padding: 0.5rem;
+  height: 100%;
+  width: 100%;
+  padding: 1.5rem;
+}
+
+.work-heading {
+  color: #fff;
+  letter-spacing: -0.1rem;
+  text-wrap: balance;
+  font-size: 3rem;
+  font-weight: 500;
+  line-height: 1;
+  flex: 1.25;
+}
+
+.company-wrapper {
+  z-index: 4;
+  grid-column-gap: 1.25rem;
+  grid-row-gap: 1.25rem;
+  flex-flow: column;
+  width: 100%;
+  display: flex;
+  position: relative;
+  padding: 0 2rem;
+  flex: 2;
+}
+
+.company-link {
+  grid-column-gap: 1.5rem;
+  grid-row-gap: 1.5rem;
+  color: #fff;
+  background-color: #1a1a1a;
+  border-radius: 0.5rem;
+  align-items: center;
+  padding: 1rem 2rem 1rem 3rem;
+  font-size: 1.5rem;
+  font-weight: 300;
+  display: flex;
+  transition: color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.company-link:hover {
+  color: #ffdab9;
+  transform: translateX(-1rem); /* Moves it slightly to the left */
+}
+
+/* Disable hover effects and prevent movement on touch devices */
+@media (hover: none) {
+  .company-link:hover {
+    color: #fff;
+    transform: initial;
+  }
+
+  .company-link:active,
+  .company-link:focus {
+    color: #fff;
+    transform: none;
+  }
+}
+
+/* For small devices (landscape phones, 576px and up) */
+@media (max-width: 575.98px) {
+  .work-heading {
+    font-size: 3.3rem;
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .work-wrapper {
+    flex-direction: column;
+  }
+
+  .company-wrapper {
+    padding: 0 1rem 0 0;
+  }
+
+  .company-link {
+    padding: 1rem;
+  }
+
+  .company-link:hover {
+    transform: translateX(1rem); /* Moves it slightly to the right */
+  }
+
+  @media (hover: none) {
+    .company-link:hover {
+      color: #fff;
+      transform: none;
+    }
+
+    .company-link:active,
+    .company-link:focus {
+      color: #fff;
+      transform: none;
+    }
+  }
+}
+
+/* For medium devices (tablets, 768px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .work-heading {
+    font-size: 4rem;
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .work-wrapper {
+    flex-direction: column;
+  }
+
+  .company-wrapper {
+    padding: 0 1.5rem 0 0;
+  }
+
+  .company-link {
+    padding: 1rem 2rem 1rem 1.5rem;
+  }
+
+  .company-link:hover {
+    transform: translateX(1rem); /* Moves it slightly to the right */
+  }
+
+  @media (hover: none) {
+    .company-link:hover {
+      color: #fff;
+      transform: none;
+    }
+
+    .company-link:active,
+    .company-link:focus {
+      color: #fff;
+      transform: none; /* Prevents any movement on tap */
+    }
+  }
+}
+
+/* For large devices (desktops, 992px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .work-heading {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .work-wrapper {
+    flex-direction: column;
+  }
+
+  .company-wrapper {
+    padding: 0 3rem 0 0;
+  }
+
+  .company-link:hover {
+    transform: translateX(1rem); /* Moves it slightly to the right */
+  }
+
+  @media (hover: none) {
+    .company-link:hover {
+      color: #fff;
+      transform: none;
+    }
+
+    .company-link:active,
+    .company-link:focus {
+      color: #fff;
+      transform: none; /* Prevents any movement on tap */
+    }
+  }
+}

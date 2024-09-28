@@ -1,0 +1,40 @@
+/* src/components/Footer/Footer.css */
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 3rem;
+  gap: 2rem;
+  z-index: 1000; /* Ensure the footer is above other content */
+}
+
+.footer-icon {
+  margin: 0 1rem; /* Adjust spacing as needed */
+  display: flex;
+  align-items: center;
+}
+
+.footer-icon img {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.3s;
+  filter: brightness(0) saturate(100%) invert(65%) sepia(7%) saturate(88%)
+    hue-rotate(314deg) brightness(85%) contrast(83%);
+  cursor: pointer;
+}
+
+.footer-icon:hover img {
+  transform: scale(1.1);
+  filter: invert(77%) sepia(43%) saturate(223%) hue-rotate(339deg)
+    brightness(105%) contrast(102%);
+}
+
+/* Disable hover effect on touch devices */
+@media (hover: none) {
+  .footer-icon:hover img {
+    transform: none;
+    filter: brightness(0) saturate(100%) invert(65%) sepia(7%) saturate(88%)
+      hue-rotate(314deg) brightness(85%) contrast(83%);
+  }
+}

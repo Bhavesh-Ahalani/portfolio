@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Scout Client Dashboard (SCD)",
+    "description": "A robust platform that captures and analyzes user interactions to optimize enterprise operations. It drives growth by providing actionable insights and reducing costs through efficient data utilization.",
+    "techStack": [
+      "Java",
+      "SpringBoot",
+      "Angular",
+      "TypeScript",
+      "GoJs",
+      "D3",
+      "MySQL"
+    ]
+  },
+  {
+    "name": "Soroco Neo Design System (SNDS)",
+    "description": "A comprehensive suite of reusable components that standardize the user interface across products. It enhances user experience consistency and streamlines the development process by reducing redundancy.",
+    "techStack": ["Angular", "TypeScript", "GoJs", "D3"]
+  },
+  {
+    "name": "ESLint",
+    "description": "A centralized library designed to enforce consistent code quality across multiple projects. It minimizes integration issues and promotes best practices, ensuring smooth and efficient development cycles.",
+    "techStack": ["JavaScript"]
+  },
+  {
+    "name": "Scout Turbo",
+    "description": "A versatile low-code platform that simplifies the creation of complex applications. It enables users with minimal coding experience to design and customize robust interfaces, accelerating the software development process.",
+    "techStack": ["React", "craft.js"]
+  }
+]

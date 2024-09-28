@@ -1,0 +1,48 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* For small devices (landscape phones, 576px and up) */
+@media (max-width: 575.98px) {
+  html {
+    font-size: 12px; /* 1rem = 14px */
+  }
+}
+
+/* For medium devices (tablets, 768px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  html {
+    font-size: 14px; /* 1rem = 15px */
+  }
+}
+
+/* For large devices (desktops, 992px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  html {
+    font-size: 16px; /* 1rem = 16px */
+  }
+}
+
+/* For extra large devices (large desktops, 1200px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  html {
+    font-size: 16px; /* 1rem = 18px */
+  }
+}
+
+/* For extra extra large devices (extra large desktops, 1400px and up) */
+@media (min-width: 1200px) {
+  html {
+    font-size: 18px; /* 1rem = 20px */
+  }
+}
