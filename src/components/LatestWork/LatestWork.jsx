@@ -31,7 +31,7 @@ function LatestWork() {
     };
   }, []);
 
-  const title = `LATEST WORK`;
+  const title = `RECENT PROJECTS`;
 
   return (
     <div className="latest-work">

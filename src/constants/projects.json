@@ -14,7 +14,7 @@
   },
   {
     "name": "Soroco Neo Design System (SNDS)",
-    "description": "A comprehensive suite of reusable components that standardize the user interface across products. It enhances user experience consistency and streamlines the development process by reducing redundancy.",
+    "description": "A comprehensive suite of reusable components that standardizes the user interface across products. It enhances user experience consistency and streamlines the development process by reducing redundancy.",
     "techStack": ["Angular", "TypeScript", "GoJs", "D3"]
   },
   {
