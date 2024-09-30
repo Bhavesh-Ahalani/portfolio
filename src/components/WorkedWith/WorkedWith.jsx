@@ -6,9 +6,9 @@ function WorkedWith() {
   const workText = `I've worked with the likes of:`;
 
   const companies = [
-    { name: "TCS", website: "https://www.tcs.com/" },
-    { name: "Cognizant", website: "https://www.cognizant.com/in/en" },
     { name: "Soroco", website: "https://soroco.com/" },
+    { name: "Cognizant", website: "https://www.cognizant.com/in/en" },
+    { name: "TCS", website: "https://www.tcs.com/" },
   ];
 
   const handleCompanyClick = (website) => {

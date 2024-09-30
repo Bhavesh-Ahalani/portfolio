@@ -1,5 +1,10 @@
 [
   {
+    "name": "Scout Turbo",
+    "description": "A versatile low-code platform that simplifies the creation of complex applications. It enables users with minimal coding experience to design and customize robust interfaces, accelerating the software development process.",
+    "techStack": ["React", "craft.js"]
+  },
+  {
     "name": "Scout Client Dashboard (SCD)",
     "description": "A robust platform that captures and analyzes user interactions to optimize enterprise operations. It drives growth by providing actionable insights and reducing costs through efficient data utilization.",
     "techStack": [
@@ -21,10 +26,5 @@
     "name": "ESLint",
     "description": "A centralized library designed to enforce consistent code quality across multiple projects. It minimizes integration issues and promotes best practices, ensuring smooth and efficient development cycles.",
     "techStack": ["JavaScript"]
-  },
-  {
-    "name": "Scout Turbo",
-    "description": "A versatile low-code platform that simplifies the creation of complex applications. It enables users with minimal coding experience to design and customize robust interfaces, accelerating the software development process.",
-    "techStack": ["React", "craft.js"]
   }
 ]
