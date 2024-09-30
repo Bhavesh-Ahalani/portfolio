@@ -1,5 +1,29 @@
 [
   {
+    "name": "HTML",
+    "iconName": "html",
+    "description": "Standard Markup Language for Web Pages",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/HTML"
+  },
+  {
+    "name": "CSS",
+    "iconName": "css",
+    "description": "Style Sheet Language for Designing Web Pages",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/CSS"
+  },
+  {
+    "name": "JavaScript",
+    "iconName": "javascript",
+    "description": "High-Level Programming Language for Web Development",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+  },
+  {
+    "name": "TypeScript",
+    "iconName": "typescript",
+    "description": "Typed Superset of JavaScript",
+    "url": "https://www.typescriptlang.org/"
+  },
+  {
     "name": "Angular",
     "iconName": "angular",
     "description": "Frontend Application Framework",
@@ -24,41 +48,16 @@
     "url": "https://spring.io/projects/spring-boot"
   },
   {
-    "name": "HTML",
-    "iconName": "html",
-    "description": "Standard Markup Language for Web Pages",
-    "url": "https://developer.mozilla.org/en-US/docs/Web/HTML"
-  },
-  {
-    "name": "CSS",
-    "iconName": "css",
-    "description": "Style Sheet Language for Designing Web Pages",
-    "url": "https://developer.mozilla.org/en-US/docs/Web/CSS"
-  },
-
-  {
-    "name": "JavaScript",
-    "iconName": "javascript",
-    "description": "High-Level Programming Language for Web Development",
-    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
-  },
-  {
-    "name": "TypeScript",
-    "iconName": "typescript",
-    "description": "Typed Superset of JavaScript",
-    "url": "https://www.typescriptlang.org/"
+    "name": "MySQL",
+    "iconName": "mysql",
+    "description": "Open-Source Relational Database Management System",
+    "url": "https://www.mysql.com/"
   },
   {
     "name": "Git",
     "iconName": "git",
     "description": "Version Control System",
     "url": "https://git-scm.com/"
-  },
-  {
-    "name": "MySQL",
-    "iconName": "mysql",
-    "description": "Open-Source Relational Database Management System",
-    "url": "https://www.mysql.com/"
   },
   {
     "name": "Power BI",
