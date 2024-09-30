@@ -70,6 +70,13 @@
 }
 
 /* Responsive Styles */
+
+@media (max-width: 1052px) {
+  .card {
+    height: 30rem;
+  }
+}
+
 @media (max-width: 930px) {
   .card-container {
     top: -8rem;
