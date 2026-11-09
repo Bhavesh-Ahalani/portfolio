@@ -1,72 +1,94 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
-import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
-import About from "components/About/About";
-import Profile from "components/Profile/Profile";
-import WorkedWith from "components/WorkedWith/WorkedWith";
-import TechStack from "components/TechStack/TechStack";
-import LatestWork from "components/LatestWork/LatestWork";
-import Footer from "components/Footer/Footer";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { companies, kapsyChapters } from "content";
+import { hasFinePointer, prefersReducedMotion } from "utils";
+import ParticleField from "components/ParticleField";
+import { ChapterNav, Cursor, Loader, TopBar } from "components/Chrome";
+import { Contact, Experience, Hero, WorkChapter } from "components/Sections";
 
-const darkTheme = createTheme({
-  palette: {
-    mode: "dark",
-  },
-});
+gsap.registerPlugin(ScrollTrigger);
+
+const LABELS = ["Intro", ...kapsyChapters.map((c) => c.label), "Before", "Contact"];
+const EXPERIENCE_INDEX = LABELS.indexOf("Before");
+const CONTACT_INDEX = LABELS.indexOf("Contact");
 
 function App() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const [focusKnot, setFocusKnot] = useState(-1);
+  const [reduce] = useState(prefersReducedMotion);
+  const [fine] = useState(hasFinePointer);
 
+  // Scroll choreography: hero entrance, per-chapter reveals and number counters.
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
+    if (reduce) return undefined;
+    const ctx = gsap.context(() => {
+      gsap.from(".hero h1 .ch", { yPercent: 110, rotate: 6, duration: 1.4, ease: "expo.out", stagger: 0.035, delay: 1.65 });
+      gsap.from(".hero .kicker, .hero-row", { opacity: 0, y: 20, duration: 1.2, ease: "expo.out", delay: 2.1, stagger: 0.1 });
 
-    window.addEventListener("scroll", handleScroll);
+      gsap.utils.toArray(".chapter:not(.hero)").forEach((section) => {
+        gsap.from(section.querySelectorAll(".rv"), {
+          y: 32,
+          opacity: 0.12,
+          filter: "blur(8px)",
+          duration: 1.1,
+          ease: "expo.out",
+          stagger: 0.08,
+          scrollTrigger: { trigger: section, start: "top 65%" },
+        });
+      });
+
+      gsap.utils.toArray("[data-count]").forEach((el) => {
+        const target = Number(el.dataset.count);
+        const suffix = el.dataset.suffix || "";
+        const counter = { v: 0 };
+        ScrollTrigger.create({
+          trigger: el,
+          start: "top 85%",
+          once: true,
+          onEnter: () =>
+            gsap.to(counter, {
+              v: target,
+              duration: 1.6,
+              ease: "expo.out",
+              onUpdate: () => {
+                el.textContent = `${Math.round(counter.v)}${suffix}`;
+              },
+            }),
+        });
+      });
+    });
+
+    const refresh = () => ScrollTrigger.refresh();
+    window.addEventListener("relayout", refresh);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("relayout", refresh);
+      ctx.revert();
     };
-  }, []);
-
-  const handleEmailClick = () => {
-    window.location.href =
-      "mailto:bhavesh.ahalani@gmail.com?subject=Hello%20There!&body=Hi,%20I%20was%20checking%20out%20your%20profile%20and%20would%20like%20to%20get%20in%20touch.";
-  };
+  }, [reduce]);
 
   return (
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
-      <div className="App">
-        <Profile />
-        <About />
-        <WorkedWith />
-        <TechStack />
-        <LatestWork />
-        <Footer />
-        <div
-          className={`icon-container ${
-            !isScrolled || isHovered ? "contact-icon" : ""
-          }`}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          onClick={handleEmailClick}
-        >
-          {!isScrolled || isHovered ? (
-            <ChatBubbleIcon />
-          ) : (
-            <HorizontalRuleIcon />
-          )}
-        </div>
-      </div>
-    </ThemeProvider>
+    <>
+      <Loader gsap={gsap} reduce={reduce} />
+      <ParticleField focusKnot={focusKnot} />
+      <div className="veil" aria-hidden="true" />
+      <TopBar experienceIndex={EXPERIENCE_INDEX} contactIndex={CONTACT_INDEX} />
+      <ChapterNav labels={LABELS} />
+      <Cursor enabled={fine} reduce={reduce} />
+
+      <main>
+        <Hero />
+        {kapsyChapters.map((chapter) => (
+          <WorkChapter key={chapter.id} chapter={chapter} reduce={reduce} />
+        ))}
+        <Experience companies={companies} onFocusKnot={setFocusKnot} />
+        <Contact />
+      </main>
+
+      <footer className="site-footer">
+        <span>Bhavesh Ahalani</span>
+        <span>Kapsy, Optum, Soroco, Cognizant, TCS</span>
+      </footer>
+    </>
   );
 }
 
