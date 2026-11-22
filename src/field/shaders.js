@@ -16,6 +16,8 @@ export const vertexShader = /* glsl */ `
   uniform float uMouseK;
   uniform float uFocus;
   uniform float uFocusAmt;
+  uniform vec4 uMask;   // two text bands on screen (top, bottom, top, bottom) in clip space
+  uniform float uGain;  // overall brightness (lower on phones, where dots are dense)
 
   varying vec3 vColor;
   varying float vAlpha;
@@ -45,6 +47,14 @@ export const vertexShader = /* glsl */ `
     vColor = aColor + f * 0.4 + on * vec3(0.12, 0.08, 0.18);
     vAlpha = 0.62 + 0.38 * sin(uTime * 1.1 + s);
     vAlpha = mix(vAlpha * (1.0 - 0.65 * uFocusAmt), 0.75, on);
+
+    // Fade out particles that sit behind text, with a soft edge so the shape
+    // looks like it dissolves around the copy instead of being cut.
+    float y = gl_Position.y / gl_Position.w;
+    float fe = 0.09;
+    float b0 = smoothstep(uMask.y - fe, uMask.y, y) * (1.0 - smoothstep(uMask.x, uMask.x + fe, y));
+    float b1 = smoothstep(uMask.w - fe, uMask.w, y) * (1.0 - smoothstep(uMask.z, uMask.z + fe, y));
+    vAlpha *= (1.0 - 0.94 * max(b0, b1)) * uGain;
   }
 `;
 

@@ -9,6 +9,10 @@ const smoothstep = (e0, e1, x) => {
   return t * t * (3 - 2 * t);
 };
 
+// On phones the shape lives in a band across the top ~40% of the screen
+// (world units; the visible half-height is ~3.7), and the copy starts below it.
+const MOBILE_OFFSET = [0, 1.95];
+
 // The fixed WebGL background. Scroll position picks which two shapes to blend,
 // the cursor pushes particles away, and `focusKnot` lights up one employer on the helix.
 export default function ParticleField({ focusKnot }) {
@@ -58,6 +62,8 @@ export default function ParticleField({ focusKnot }) {
       uMouseK: { value: 0 },
       uFocus: { value: -1 },
       uFocusAmt: { value: 0 },
+      uMask: { value: new THREE.Vector4(-9, -9, -9, -9) },
+      uGain: { value: 1 },
     };
     const material = new THREE.ShaderMaterial({
       uniforms,
@@ -77,12 +83,62 @@ export default function ParticleField({ focusKnot }) {
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
       small = w < 820;
-      points.scale.setScalar(small ? 0.55 : w < 1180 ? 0.82 : 1);
+      points.scale.setScalar(small ? 0.5 : w < 1180 ? 0.82 : 1);
+      uniforms.uGain.value = small ? 0.8 : 1;
     };
 
     let centers = [];
+    let copies = [];
     const measure = () => {
-      centers = measureCenters(getChapters());
+      const chapters = getChapters();
+      centers = measureCenters(chapters);
+      copies = chapters.map((c) => c.querySelector(".copy")).filter(Boolean);
+    };
+
+    // Phones only. Find the (at most two) blocks of copy on screen, then:
+    // 1. hand their vertical extent to the shader, which fades out particles behind them;
+    // 2. move the shape into the biggest empty gap left over, shrinking it to fit.
+    const NONE = [-9, -9];
+    const TOP_BAR = 64;
+    const gap = { y: MOBILE_OFFSET[1], scale: 0.5 };
+    const updateMask = (dt) => {
+      if (!small) {
+        uniforms.uMask.value.set(-9, -9, -9, -9);
+        return;
+      }
+      const h = window.innerHeight;
+      const bands = [];
+      for (const el of copies) {
+        const r = el.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > h) continue;
+        bands.push([r.top - 12, r.bottom + 12]);
+        if (bands.length === 2) break;
+      }
+      // Screen pixels to clip space: +1 at the top of the screen, -1 at the bottom.
+      const clip = (px) => 1 - (2 * px) / h;
+      const a = bands[0] ? bands[0].map(clip) : NONE;
+      const b = bands[1] ? bands[1].map(clip) : NONE;
+      uniforms.uMask.value.set(a[0], a[1], b[0], b[1]);
+
+      // Empty stretches of screen between the top bar, the text blocks and the bottom edge.
+      let best = [TOP_BAR, TOP_BAR];
+      let cursor = TOP_BAR;
+      for (const [top, bottom] of [...bands, [h, h]]) {
+        if (top - cursor > best[1] - best[0]) best = [cursor, top];
+        cursor = Math.max(cursor, bottom);
+      }
+      const freePx = best[1] - best[0];
+      if (freePx > h * 0.18) {
+        const cy = (best[0] + best[1]) / 2;
+        const targetY = clip(cy) * halfH;
+        // The shapes are roughly 4.8 world units tall at scale 1.
+        const targetScale = Math.min(0.5, Math.max(0.28, ((freePx / h) * 2 * halfH) / 4.8));
+        const k = reduce ? 1 : Math.min(1, dt * 5);
+        gap.y += (targetY - gap.y) * k;
+        gap.scale += (targetScale - gap.scale) * k;
+      }
+      points.position.y = gap.y;
+      points.scale.setScalar(gap.scale);
     };
 
     const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2, moved: false };
@@ -132,8 +188,8 @@ export default function ParticleField({ focusKnot }) {
       for (let k = 0; k < A.length; k++) pos[k] = A[k] + (B[k] - A[k]) * t;
       geo.attributes.position.needsUpdate = true;
 
-      const oA = small ? [0, 1.75] : WIDE_OFFSETS[i0];
-      const oB = small ? [0, 1.75] : WIDE_OFFSETS[i1];
+      const oA = small ? MOBILE_OFFSET : WIDE_OFFSETS[i0];
+      const oB = small ? MOBILE_OFFSET : WIDE_OFFSETS[i1];
       points.position.x = oA[0] + (oB[0] - oA[0]) * t;
       points.position.y = oA[1] + (oB[1] - oA[1]) * t;
       uniforms.uFlow.value = FLOWS[i0] + (FLOWS[i1] - FLOWS[i0]) * t;
@@ -159,6 +215,7 @@ export default function ParticleField({ focusKnot }) {
       uniforms.uMouseK.value = mouseK;
       uniforms.uMouse.value.set(nx * halfH * camera.aspect, ny * halfH);
       uniforms.uTime.value = clock;
+      updateMask(dt);
 
       renderer.render(scene, camera);
     };
